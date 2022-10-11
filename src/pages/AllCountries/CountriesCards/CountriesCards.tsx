@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import useAllCountries from "../../../hooks/useAllCountries";
 import useTheme from "../../../hooks/useTheme";
 import { Card, MainCard } from "./CountriesCardsStyles";
@@ -22,6 +23,7 @@ interface CountryRestApi {
 
 const CardCountry = ({ data }: any) => {
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const normalizePopulationNumber = (num: number) => {
     const dataString = num.toString().split("").reverse().join("");
     let index = 1;
@@ -42,7 +44,7 @@ const CardCountry = ({ data }: any) => {
   };
 
   return (
-    <Card colors={theme}>
+    <Card colors={theme} onClick={() => navigate(data.name.common)}>
       <img src={data.flags.svg} alt="" width={350} />
       <div className="info">
         <h2>{data.name.common}</h2>

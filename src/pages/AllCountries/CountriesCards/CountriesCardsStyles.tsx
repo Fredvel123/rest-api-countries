@@ -4,7 +4,7 @@ import { AppProps } from "../../../interfaces/colors.interface";
 export const Card = styled.div<AppProps>`
   width: 310px;
   min-height: 350px;
-  /* margin: auto; */
+  cursor: pointer;
   background: ${({ colors }) => colors.secondary};
   margin-bottom: 5vh;
   border-radius: 7px;
@@ -45,7 +45,6 @@ export const Card = styled.div<AppProps>`
 `;
 
 export const MainCard = styled.div`
-  /* background: green; */
   margin-top: 5vh;
   display: flex;
   justify-content: space-between;

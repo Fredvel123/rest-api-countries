@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { byRegion } from "../../../config/endpoints";
 import useAllCountries from "../../../hooks/useAllCountries";
 import useTheme from "../../../hooks/useTheme";
 import { OptionsBarStyles } from "./OptionsBarStyles";
@@ -15,8 +16,11 @@ interface CountryApi {
     common: string;
   };
 }
+interface SetStateInterface {
+  setState: Function;
+}
 
-export default function OptionsBar() {
+export default function OptionsBar({ setState }: SetStateInterface) {
   const navigate = useNavigate();
   const [isfilterOpen, setIsFilterOpen] = useState<boolean>(false);
   const [nameCountries, setNameCountries] = useState<string>("");
@@ -49,6 +53,17 @@ export default function OptionsBar() {
 
   const handlerFormOnSubmit = () => {
     findCountriesbyName(nameCountries);
+  };
+
+  const getCountriesByRegion = async (region: string) => {
+    try {
+      const request = await fetch(byRegion + `/${region}`);
+      const response = await request.json();
+      setIsFilterOpen(false);
+      return setState(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -92,11 +107,11 @@ export default function OptionsBar() {
           )}
         </div>
         <div className="regions">
-          <p>Africa</p>
-          <p>America</p>
-          <p>Asia</p>
-          <p>Europe</p>
-          <p>Oceania</p>
+          <p onClick={() => getCountriesByRegion("africa")}>Africa</p>
+          <p onClick={() => getCountriesByRegion("america")}>America</p>
+          <p onClick={() => getCountriesByRegion("asia")}>Asia</p>
+          <p onClick={() => getCountriesByRegion("europe")}>Europe</p>
+          <p onClick={() => getCountriesByRegion("oceania")}>Oceania</p>
         </div>
       </div>
     </OptionsBarStyles>

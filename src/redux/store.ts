@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import theme from "./slices/theme";
+import countries from "./slices/countries";
 
 export const store = configureStore({
-  reducer: { theme },
+  reducer: { theme, countries },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

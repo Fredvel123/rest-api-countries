@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 export default function Header() {
   const { themeData, theme, setAutoTheme } = useTheme();
   return (
-    <HeaderStyles color={theme}>
+    <HeaderStyles colors={theme}>
       <h2>Where in the world?</h2>
       {themeData ? (
         <div className="setTheme_button" onClick={setAutoTheme}>

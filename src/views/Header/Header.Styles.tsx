@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { AppProps } from "../../interfaces/colors.interface";
 
-export const HeaderStyles = styled.div`
+export const HeaderStyles = styled.div<AppProps>`
   height: 15vh;
-  background: ${({ color }) => color.secondary};
+  background: ${({ colors }) => colors.secondary};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,6 +18,14 @@ export const HeaderStyles = styled.div`
   }
   .icon {
     width: 20px;
-    color: ${({ color }) => color.text};
+    color: ${({ colors }) => colors.text};
+  }
+  @media screen and (max-width: 750px) {
+    h2 {
+      font-size: 18px;
+    }
+    p {
+      font-size: 16px;
+    }
   }
 `;

@@ -56,17 +56,34 @@ const CardCountry = ({ data }: any) => {
 
 export default function CountriesCards({ cards }: CardsApp) {
   const { countries } = useAllCountries();
-  return (
-    <MainCard>
-      {cards.length > 0
-        ? cards.map((country: CountryRestApi, index) => (
-            <CardCountry data={country} key={index} />
-          ))
-        : countries.map((country: CountryRestApi, index) => (
-            <CardCountry data={country} key={index} />
-          ))}
-      CountriesCards
-      <button onClick={() => console.log(cards)}> card</button>
-    </MainCard>
-  );
+
+  if (cards.length > 0) {
+    return (
+      <MainCard>
+        {cards.map((country: CountryRestApi, index) => (
+          <CardCountry data={country} key={index} />
+        ))}
+      </MainCard>
+    );
+  } else {
+    return (
+      <MainCard>
+        {countries.map((country: CountryRestApi, index) => (
+          <CardCountry data={country} key={index} />
+        ))}
+      </MainCard>
+    );
+  }
+
+  // return (
+  //   <MainCard>
+  //     {/* {cards.length > 0
+  //       ? cards.map((country: CountryRestApi, index) => (
+  //           <CardCountry data={country} key={index} />
+  //         ))
+  //       : countries.map((country: CountryRestApi, index) => (
+  //           <CardCountry data={country} key={index} />
+  //         ))} */}
+  //   </MainCard>
+  // );
 }

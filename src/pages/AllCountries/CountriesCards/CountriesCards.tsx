@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import normalizePopulationNumber from "../../../helpers/normalizePopulationNumber";
 import useAllCountries from "../../../hooks/useAllCountries";
 import useTheme from "../../../hooks/useTheme";
 import { Card, MainCard } from "./CountriesCardsStyles";
@@ -24,24 +25,24 @@ interface CountryRestApi {
 const CardCountry = ({ data }: any) => {
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const normalizePopulationNumber = (num: number) => {
-    const dataString = num.toString().split("").reverse().join("");
-    let index = 1;
-    let result = "";
-    for (const char of dataString) {
-      if (index % 3 == 0) {
-        result += char + ",";
-      } else {
-        result += char;
-      }
-      index += 1;
-    }
-    result = result.split("").reverse().join("");
-    if (result[0] === ",") {
-      result = result.substring(1);
-    }
-    return result;
-  };
+  // const normalizePopulationNumber = (num: number) => {
+  //   const dataString = num.toString().split("").reverse().join("");
+  //   let index = 1;
+  //   let result = "";
+  //   for (const char of dataString) {
+  //     if (index % 3 == 0) {
+  //       result += char + ",";
+  //     } else {
+  //       result += char;
+  //     }
+  //     index += 1;
+  //   }
+  //   result = result.split("").reverse().join("");
+  //   if (result[0] === ",") {
+  //     result = result.substring(1);
+  //   }
+  //   return result;
+  // };
 
   return (
     <Card colors={theme} onClick={() => navigate(data.name.common)}>
